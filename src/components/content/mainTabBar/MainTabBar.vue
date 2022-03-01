@@ -22,7 +22,7 @@
     </tab-bar-item>
     <tab-bar-item 
       content="我的"
-      link='detail'>
+      link='/'>
         <img slot="icon" src="~assets/img/tabbar/profile.svg" alt="">
         <img slot="active-icon" src="~assets/img/tabbar/profile_active.svg" alt="">
     </tab-bar-item>

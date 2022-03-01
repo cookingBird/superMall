@@ -8,6 +8,7 @@
     </tab-control>
     <common-scroll  class="home-scroll"
                     ref="scroll"
+                    :options="options"
                     @loadMore="loadMore"
                     @scroll="contentScroll">
       <home-swiper  :banners="banners"
@@ -84,6 +85,7 @@ export default {
       isShowBackTop: false,
       offsetTop: 0,
       func:{},
+      options: {switch:{turn:true,name:'scrollSwitch'}}
     };
   },
   props: {},
@@ -134,6 +136,8 @@ export default {
   },
   methods: {
     tabClick(index){
+      this.$bus.$emit('test','item')
+      this.$bus.$emit('scrollSwitch','scrollSwitch hello')
       switch(index){
         case 0:
           this.currentType = POP
@@ -151,22 +155,22 @@ export default {
         setTimeout(() => {
           this.$refs.scroll.finishPullUp();
         },500)
-      },
-      backTop(){
-        // console.log('click')
-        this.$refs && this.$refs.scroll.scrollTo(0, 0, 300);
-      },
-      contentScroll(position) {
-        // console.log(position.y)
-        // 1.决定tabControl是否显示
-        this.isShowTabFixed = -position.y >= this.tabOffsetTop
-        // 2.决定backTop是否显示
-        this.isShowBackTop = position.y < -BACKTOP_DISTANCE
+    },
+    backTop(){
+      // console.log('click')
+      this.$refs && this.$refs.scroll.scrollTo(0, 0, 300);
+    },
+    contentScroll(position) {
+      // console.log(position.y)
+      // 1.决定tabControl是否显示
+      this.isShowTabFixed = -position.y >= this.tabOffsetTop
+      // 2.决定backTop是否显示
+      this.isShowBackTop = position.y < -BACKTOP_DISTANCE
 
-        // this.offsetTop = position.y
+      // this.offsetTop = position.y
 
-        // console.log(this.offsetTop)
-      },
+      // console.log(this.offsetTop)
+    },
     /////////////////////////
     //网络请求相关
     getHomeProducts(type) {

@@ -17,7 +17,9 @@
 export default {
   name: "GoodsListItem",
   data() {
-    return {};
+    return {
+      name:'test'
+    };
   },
   props: {
     goods: {
@@ -54,8 +56,13 @@ export default {
   // beforeMount() {
   //     console.log('[ "item beforeMount" ]', "item beforeMount")
   // },
-  // mounted() {
-  //     console.log('[ "item mounted" ]', "item mounted")
-  // },
+  mounted() {
+      console.log('[ "item mounted" ]', "item mounted")
+      this.$nextTick(()=>{
+        this.$bus.$on(`${this.name}`, (m)=>{
+          console.log(m + 'hello')
+        })
+        })
+  },
 };
 </script>

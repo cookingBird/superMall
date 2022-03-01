@@ -17,6 +17,9 @@ export default {
   components:{
     Scroll
   },
+  props: {
+    options: Object
+  },
   data() {
     return {
       config:{
@@ -25,16 +28,15 @@ export default {
               scrollY: true,
               click: true,
               freeScroll: true
-            }
+            },
     }
   },
-  props: {},
   methods: {
     finishPullUp() {
       this.$refs && this.$refs.scrollOrigin.finishPullUp()
     },
     refresh() {
-      this.$refs && this.$refs.scrollOrigin.refresh()
+      this.$refs.scrollOrigin && this.$refs.scrollOrigin.refresh()
     },
     scrollTo(x, y, time) {
       this.$refs && this.$refs.scrollOrigin.scrollTo(x, y, time)
@@ -55,15 +57,18 @@ export default {
   // beforeMount() {
   //   console.log('[ "CommonScroll beforeMounte" ]', "CommonScroll beforeMounte")
   // },
-  // mounted() {
-  //   console.log('[ "CommonScroll" ]', 'CommonScroll mounted')
-  // },
+  mounted() {
+    // console.log('[ "CommonScroll" ]', 'CommonScroll mounted');
+  },
   // beforeUpdate() {
   //   console.log('[ "CommonScroll beforeUpdated" ]', "CommonScroll beforeUpdated")
   // },
   // updated() {
   //   console.log('[ "CommonScroll updated" ]', "CommonScroll updated")
   // },
+  beforeDestroy() {
+    console.log('Scroll beforeDestory')
+  },
 };
 </script>
 

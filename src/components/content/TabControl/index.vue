@@ -30,7 +30,10 @@ export default {
       }
   },
   beforeMount() {
-    this.$bus.$emit('TabControlBeforeMount')
+    // this.$bus.$emit('TabControlBeforeMount')
+  },
+  beforeDestroy() {
+    console.log('tab BeforeDestory')
   },
 };
 </script>
